@@ -1,0 +1,23 @@
+/*
+	CSS JEFFERSON OLIVEIRA
+	MODELO BÁSICO JSF2.2 | PRIMEFACE 4 | BOOTSTRAP 3.0
+	
+*/
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  padding-top: 22px;
+  height: 60px;
+  background-color: #f3f3f3;
+}
