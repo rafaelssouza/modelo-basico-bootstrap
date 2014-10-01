@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template.xhtml">
+	<ui:define name="content">
+		<h2>Cadastro de livro:</h2>
+
+		<h:form>
+
+			<div class="container">
+
+				<div class="row ">
+					<div class="col-md-12">
+						<p:dataTable id="listLivros" value="#{livroController.listaLivros()}" var="livro"
+							emptyMessage="Ainda não há dados.">
+							<p:column headerText="Titulo do livro">
+								<h:outputText value="#{livro.nome}" />
+							</p:column>
+
+							<p:column headerText="Status">
+								<h:outputText
+									style="color:#{livro.ativo == true ? '#333' : '#F00'}"
+									value="#{livro.ativo == true ? 'Ativo' : 'Destivado'}" />
+							</p:column>
+							
+							
+						</p:dataTable>
+					</div>
+				</div>
+
+				<p:messages />
+
+
+				<div class="row" style="margin-top: 15px">
+					<div class="col-md-12">
+						<h:panelGrid columns="2">
+							<p:outputLabel for="txt2" value="Nome do Livro:" />
+							<p:inputText id="txt2" value="#{livroController.livro.nome}"
+								required="true" label="e Definir aqui " />
+
+							<p:outputLabel for="txt3" value="Autor:" />
+							<h:selectOneMenu id="txt3" value="#{livroController.livro.autor}">
+								<f:selectItems value="#{autoresController.listaAutores()}"
+									var="autor" itemLabel="#{autor.nome}" itemValue="#{autor.id}" />
+							</h:selectOneMenu>
+
+							<p:outputLabel for="txt4" value="Ativo:" />
+							<h:selectOneMenu id="txt4" value="#{livroController.livro.ativo}"
+								required="true">
+								<f:selectItem itemLabel="Desativado" itemValue="false" />
+								<f:selectItem itemLabel="Ativo" itemValue="true" />
+							</h:selectOneMenu>
+
+							<h:outputText value="" />
+							<p:commandButton action="#{livroController.cadatroLivro()}"
+								value="Cadastrar Livro" update="@form" />
+
+						</h:panelGrid>
+					</div>
+				</div>
+
+			</div>
+
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>
+</html>
